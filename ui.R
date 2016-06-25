@@ -22,7 +22,8 @@ shinyUI(fluidPage(
                   value = 30),
       numericInput(inputId = "prirez_pp",
                 label = "Prirez (%):",
-                value = "0")
+                value = "0"),
+      submitButton("Calculate")
     ),
 
     # Show a plot of the generated distribution
