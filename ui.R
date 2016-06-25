@@ -15,23 +15,26 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bruto_placa",
-                  "Bruto osobni dohodak:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
+      numericInput(inputId = "bruto",
+                   label = "Bruto osobni dohodak (Kn):",
+                   value = 0),
+      numericInput(inputId = "osobni_odbitak",
+                   label = "Osobni odbitak:",
+                   value = 1),
       numericInput(inputId = "prirez_pp",
                 label = "Prirez (%):",
                 value = "0"),
+      selectInput(inputId = "mio",
+                  label = "Doprinos MIO:", 
+                  choices = list("MIO 1. stup 20%" = 1, "MIO 1. stup 15% | MIO 2. stup 5%" = 2)),
       submitButton("Calculate")
     ),
 
     # Show a plot of the generated distribution
     mainPanel(
       h3("izracun place:"),
-      plotOutput("distPlot"),
-      paste("Stopa prireza:"),
-      textOutput("prirezOut")
+      textOutput("placa_neto"),
+      dataTableOutput("placa")
     )
   )
 ))
